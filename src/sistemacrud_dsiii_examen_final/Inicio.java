@@ -1,18 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package sistemacrud_dsiii_examen_final;
 
-/**
- *
- * @author antho
- */
 public class Inicio extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Inicio
-     */
     public Inicio() {
         initComponents();
     }
@@ -211,7 +200,7 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BTNiniciosesion2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNiniciosesion2ActionPerformed
-        Login();
+        //Login();
     }//GEN-LAST:event_BTNiniciosesion2ActionPerformed
 
     private void BTNcrearusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNcrearusuarioActionPerformed
@@ -221,7 +210,7 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_BTNcrearusuarioActionPerformed
 
     private void BTNiniciosesion3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNiniciosesion3ActionPerformed
-        CrearUsuario();
+        //CrearUsuario();
     }//GEN-LAST:event_BTNiniciosesion3ActionPerformed
 
     private void BTNiniciosesion4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNiniciosesion4ActionPerformed
