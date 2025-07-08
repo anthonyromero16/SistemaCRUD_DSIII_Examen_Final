@@ -6,7 +6,7 @@ package sistemacrud_dsiii_examen_final;
 
 /**
  *
- * @author antho
+ * @author 18313
  */
 public class Cajero extends javax.swing.JFrame {
 
