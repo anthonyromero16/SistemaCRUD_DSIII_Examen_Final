@@ -21,6 +21,7 @@ import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 
 import java.io.FileOutputStream;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 
@@ -40,8 +41,7 @@ public class Inicio extends javax.swing.JFrame {
         initComponents();
         jPanel1.setVisible(false);
            setLocationRelativeTo(null);
-           
-           
+                     
     }
     
     
@@ -52,8 +52,8 @@ public class Inicio extends javax.swing.JFrame {
         int width = getWidth();
         int height = getHeight();
         
-        Color color1 = new Color(255,228,132);
-        Color color2 = new Color(255,255,255);
+        Color color1 = new Color(255,228,120);
+        Color color2 = new Color(255,255,245);
         GradientPaint gp = new GradientPaint(0,0, color1, width, height, color2);
         g2d.setPaint(gp);
         g2d.fillRect(0,0, width, height);
@@ -75,7 +75,6 @@ class JPanelGradient2 extends JPanel{
     }
 }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -209,8 +208,8 @@ class JPanelGradient2 extends JPanel{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BTNiniciosesion2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addComponent(BTNiniciosesion2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 270, 220));
@@ -302,7 +301,7 @@ class JPanelGradient2 extends JPanel{
     }//GEN-LAST:event_BTNiniciosesionActionPerformed
 
     private void BTNiniciosesion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNiniciosesion1ActionPerformed
-CrearUsuario();
+        CrearUsuario();
 
     }//GEN-LAST:event_BTNiniciosesion1ActionPerformed
 
