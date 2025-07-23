@@ -11,9 +11,11 @@ import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
@@ -48,7 +50,7 @@ public class Administrador extends javax.swing.JFrame {
     public Administrador(String idUsuario) {
      
         initComponents();
-    
+     cargarDatos();
      
     }
 
@@ -77,7 +79,7 @@ public class Administrador extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TablaProductos = new javax.swing.JTable();
         btnbuscar = new javax.swing.JButton();
         TXFcodigo = new javax.swing.JTextField();
         CBnombreproducto = new javax.swing.JComboBox<>();
@@ -194,18 +196,20 @@ public class Administrador extends javax.swing.JFrame {
 
         jLabel2.setText("Codigo:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TablaProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
-        jScrollPane3.setViewportView(jTable1);
+        TablaProductos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaProductosMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(TablaProductos);
 
         btnbuscar.setText("Buscar");
 
@@ -291,22 +295,18 @@ public class Administrador extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addGap(40, 40, 40)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(40, 40, 40)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(CBnombreproducto, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(58, 58, 58)
-                                .addComponent(btnbuscar))
-                            .addComponent(TXFcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane3))
-                .addGap(36, 36, 36))
+                        .addComponent(CBnombreproducto, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(58, 58, 58)
+                        .addComponent(btnbuscar))
+                    .addComponent(TXFcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(533, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -356,6 +356,9 @@ public class Administrador extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jButton4)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 940, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -399,7 +402,7 @@ public class Administrador extends javax.swing.JFrame {
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel9)
                                 .addComponent(TFmarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton3)
@@ -415,7 +418,7 @@ public class Administrador extends javax.swing.JFrame {
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(client_historial, javax.swing.GroupLayout.DEFAULT_SIZE, 1040, Short.MAX_VALUE)
+            .addComponent(client_historial)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -506,6 +509,53 @@ public class Administrador extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
       crearProducto();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void TablaProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaProductosMouseClicked
+      int fila = TablaProductos.rowAtPoint(evt.getPoint());
+    
+    if (fila >= 0) {
+        // Asignar los valores de la tabla a los campos
+        TXFcodigo.setText(TablaProductos.getValueAt(fila, 0).toString()); // código_producto
+        TFnombre.setText(TablaProductos.getValueAt(fila, 1).toString()); // nombre
+        CBcategoria.setSelectedItem(TablaProductos.getValueAt(fila, 2).toString()); // categoría
+        TFmarca.setText(TablaProductos.getValueAt(fila, 3).toString());           // marca
+        TAdetalleproducto.setText(TablaProductos.getValueAt(fila, 4).toString()); // detalle
+        TFcostounitario.setText(TablaProductos.getValueAt(fila, 5).toString());   // costo_unitario
+        TFcantdisponible.setText(TablaProductos.getValueAt(fila, 6).toString());  // cantidad_disponible
+
+        // Obtener el ID o nombre para consultar la imagen
+    String idMaterial = TablaProductos.getValueAt(fila, 0).toString();
+
+try {
+    Connection cn = con.getConnection();
+    String sql = "SELECT imagen FROM materiales WHERE id_material = ?";
+    PreparedStatement ps = cn.prepareStatement(sql);
+    ps.setString(1, idMaterial);
+    ResultSet rs = ps.executeQuery();
+
+    if (rs.next()) {
+        byte[] imagenBytes = rs.getBytes("imagen");
+        if (imagenBytes != null) {
+            InputStream in = new ByteArrayInputStream(imagenBytes);
+            BufferedImage bImage = ImageIO.read(in);
+            Image img = bImage.getScaledInstance(JPLimagen.getWidth(), JPLimagen.getHeight(), Image.SCALE_SMOOTH);
+            ImageIcon icono = new ImageIcon(img);
+
+            // Mostrar la imagen en el panel
+            Graphics g = JPLimagen.getGraphics();
+            g.clearRect(0, 0, JPLimagen.getWidth(), JPLimagen.getHeight());
+            g.drawImage(icono.getImage(), 0, 0, JPLimagen.getWidth(), JPLimagen.getHeight(), null);
+        }
+    }
+
+    ps.close();
+    rs.close();
+    cn.close();
+} catch (Exception e) {
+    e.printStackTrace();
+    JOptionPane.showMessageDialog(null, "Error al cargar imagen: " + e.getMessage());
+}}
+    }//GEN-LAST:event_TablaProductosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -645,6 +695,40 @@ public void crearProducto() {
     }
 }
 
+public void cargarDatos() {
+    // Crear el modelo y definir las columnas
+    DefaultTableModel modelo = new DefaultTableModel();
+    String[] columnas = {"ID", "Nombre", "Categoría", "Marca", "Detalle", "Costo Unitario", "Cantidad"};
+    modelo.setColumnIdentifiers(columnas);
+    TablaProductos.setModel(modelo); // Asignar el modelo antes de llenarlo
+
+    String sql = "SELECT id_material, nombre, categoria, marca, detalle_del_producto, costo_unitario, cantidad_disponible FROM materiales";
+
+    try {
+        conet = con.getConnection(); // Tu clase de conexión
+        st = conet.createStatement();
+        rs = st.executeQuery(sql);
+
+        while (rs.next()) {
+            Object[] fila = new Object[7];
+            fila[0] = rs.getInt("id_material");
+            fila[1] = rs.getString("nombre");
+            fila[2] = rs.getString("categoria");
+            fila[3] = rs.getString("marca");
+            fila[4] = rs.getString("detalle_del_producto");
+            fila[5] = rs.getDouble("costo_unitario");
+            fila[6] = rs.getInt("cantidad_disponible");
+
+            modelo.addRow(fila);
+        }
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al cargar los datos: " + e.getMessage());
+        e.printStackTrace();
+    }
+}
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CBcategoria;
@@ -656,6 +740,7 @@ public void crearProducto() {
     private javax.swing.JTextField TFmarca;
     private javax.swing.JTextField TFnombre;
     private javax.swing.JTextField TXFcodigo;
+    private javax.swing.JTable TablaProductos;
     private javax.swing.JTextField asunto;
     private javax.swing.JButton btnbuscar;
     private javax.swing.JButton cancel;
@@ -689,6 +774,5 @@ public void crearProducto() {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
