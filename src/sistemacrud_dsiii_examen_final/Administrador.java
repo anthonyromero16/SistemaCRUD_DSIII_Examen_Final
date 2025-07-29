@@ -51,10 +51,12 @@ public class Administrador extends javax.swing.JFrame {
     Statement st;
     ResultSet rs;
     int idc;
+    
+    String cedula = Inicio.cedulaUsuarioActual;
     /**
      * Creates new form clientView
      */
-    public Administrador(String idUsuario) {
+    public Administrador() {
      
         initComponents();
         
@@ -62,6 +64,7 @@ public class Administrador extends javax.swing.JFrame {
         
          cargarDatosProductos();
          cargarDatosUsuarios();
+         cargarCotizaciones();
            cargarProductosEnComboBox();
         CBnombreproducto.addActionListener(new ActionListener() {
     public void actionPerformed(ActionEvent e) {
@@ -184,6 +187,23 @@ private void setTransparent(Component comp) {
         btnModificarUser = new javax.swing.JButton();
         btnEliminarUser = new javax.swing.JButton();
         jcrolUser = new javax.swing.JComboBox<>();
+        jPanel4 =  new coloresFondo.DiseñadorFondos(
+            coloresFondo.DiseñadorFondos.Combinacion.OCEANO,
+            false
+        );
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tablecotizaciones =  new javax.swing.JTable() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // Desactiva la edición directa
+            }
+        };
+        // Aplica el diseño con gradiente
+        coloresFondo.DiseñadorFondos.configurarTabla(
+            tableUsuarios,
+            coloresFondo.DiseñadorFondos.Combinacion.AZUL_MORADO
+        );
+        jLabel17 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         inicio = new javax.swing.JMenu();
         cerrarSesion = new javax.swing.JMenuItem();
@@ -349,7 +369,7 @@ private void setTransparent(Component comp) {
                                 .addComponent(TFcostounitario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
                                 .addComponent(TFcantdisponible, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 940, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -538,7 +558,7 @@ private void setTransparent(Component comp) {
                                     .addComponent(tfnombreUser, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(tfcedulaUser, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 835, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(303, Short.MAX_VALUE))
+                .addContainerGap(289, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -576,6 +596,49 @@ private void setTransparent(Component comp) {
         );
 
         client_historial.addTab("Usurios", jPanel1);
+
+        tablecotizaciones.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tablecotizaciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablecotizacionesMouseClicked(evt);
+            }
+        });
+        jScrollPane5.setViewportView(tablecotizaciones);
+
+        jLabel17.setText("Cotizaciones");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 835, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(302, 302, 302)
+                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(289, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel17)
+                .addGap(63, 63, 63)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(413, Short.MAX_VALUE))
+        );
+
+        client_historial.addTab("Cotizaciones", jPanel4);
 
         inicio.setText("Inicio");
 
@@ -749,8 +812,12 @@ try {
     }//GEN-LAST:event_btnModificarUserActionPerformed
 
     private void btnEliminarUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarUserActionPerformed
-       eliminarUsuario();
+        eliminarUsuario();
     }//GEN-LAST:event_btnEliminarUserActionPerformed
+
+    private void tablecotizacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablecotizacionesMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tablecotizacionesMouseClicked
 
     /**
      * @param args the command line arguments
@@ -786,7 +853,7 @@ try {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 String idUsuario = (args.length > 0) ? args[0] : "";
-                new Administrador(idUsuario).setVisible(true);
+                new Administrador().setVisible(true);
             }
         });
     }
@@ -1424,6 +1491,45 @@ public void eliminarUsuario() {
     }
 }
 
+public void cargarCotizaciones() {
+    DefaultTableModel modelo = new DefaultTableModel();
+    modelo.addColumn("ID");
+    modelo.addColumn("Cédula Cliente");
+    modelo.addColumn("Fecha");
+    modelo.addColumn("Estado");
+    modelo.addColumn("Subtotal");
+    modelo.addColumn("ITBMS");
+    modelo.addColumn("Total");
+
+    tablecotizaciones.setModel(modelo);
+
+    String sql = "SELECT id_cotizacion, cedula_cliente, fecha, estado, subtotal, itbms, total FROM cotizaciones";
+
+    try {
+   
+    conet = con.getConnection(); // Tu clase de conexión
+        st = conet.createStatement();
+        rs = st.executeQuery(sql);
+
+        while (rs.next()) {
+            Object[] fila = new Object[7];
+            fila[0] = rs.getInt("id_cotizacion");
+            fila[1] = rs.getString("cedula_cliente");
+            fila[2] = rs.getTimestamp("fecha");
+            fila[3] = rs.getString("estado");
+            fila[4] = rs.getDouble("subtotal");
+            fila[5] = rs.getDouble("itbms");
+            fila[6] = rs.getDouble("total");
+            modelo.addRow(fila);
+        }
+
+        tablecotizaciones.setModel(modelo);
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al cargar cotizaciones: " + e.getMessage());
+    }
+}
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CBcategoria;
     private javax.swing.JComboBox<String> CBnombreproducto;
@@ -1453,6 +1559,7 @@ public void eliminarUsuario() {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1465,11 +1572,14 @@ public void eliminarUsuario() {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JComboBox<String> jcrolUser;
     private javax.swing.JTable tableUsuarios;
+    private javax.swing.JTable tablecotizaciones;
     private javax.swing.JTextField tfcedulaUser;
     private javax.swing.JTextField tfcontrasenaUser;
     private javax.swing.JTextField tfcorreoUser;
