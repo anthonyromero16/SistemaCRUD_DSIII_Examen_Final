@@ -8,6 +8,8 @@ import coloresFondo.DiseñadorFondos;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import conector.Conexion;
+import conector.BD2;
+import conector.BD3;
 import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -204,6 +206,30 @@ private void setTransparent(Component comp) {
             coloresFondo.DiseñadorFondos.Combinacion.AZUL_MORADO
         );
         jLabel17 = new javax.swing.JLabel();
+        estadistica =  new coloresFondo.DiseñadorFondos(
+            coloresFondo.DiseñadorFondos.Combinacion.OCEANO,
+            false
+        );
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        datechosserFechaFin = new com.toedter.calendar.JDateChooser();
+        datechosserFechaInicio = new com.toedter.calendar.JDateChooser();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablavista_estadistica = new javax.swing.JTable();
+        CBtipoEstadistica = new javax.swing.JComboBox<>();
+        jLabel21 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tablavista_estadisticachiriqui = new javax.swing.JTable();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tablavista_estadisticaPanama = new javax.swing.JTable();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        lblchitre = new javax.swing.JLabel();
+        lblpanama = new javax.swing.JLabel();
+        lblchiriqui = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         inicio = new javax.swing.JMenu();
         cerrarSesion = new javax.swing.JMenuItem();
@@ -435,7 +461,7 @@ private void setTransparent(Component comp) {
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel9)
                                 .addComponent(TFmarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 387, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton4)
                             .addComponent(jButton3)
@@ -592,7 +618,7 @@ private void setTransparent(Component comp) {
                     .addComponent(btnAgregarUser)
                     .addComponent(btnModificarUser)
                     .addComponent(btnEliminarUser))
-                .addContainerGap(255, Short.MAX_VALUE))
+                .addContainerGap(545, Short.MAX_VALUE))
         );
 
         client_historial.addTab("Usurios", jPanel1);
@@ -635,10 +661,167 @@ private void setTransparent(Component comp) {
                 .addComponent(jLabel17)
                 .addGap(63, 63, 63)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(413, Short.MAX_VALUE))
+                .addContainerGap(703, Short.MAX_VALUE))
         );
 
         client_historial.addTab("Cotizaciones", jPanel4);
+
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel18.setText("Estadistica");
+
+        jLabel19.setText("Fecha de fin:");
+
+        jLabel20.setText("fecha de inicio:");
+
+        datechosserFechaInicio.setToolTipText("");
+
+        jButton1.setText("Filtrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        tablavista_estadistica.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane2.setViewportView(tablavista_estadistica);
+
+        CBtipoEstadistica.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Materiales vendidos", "Materiales cotizados", "Facturaciones" }));
+
+        jLabel21.setText("Opciones:");
+
+        tablavista_estadisticachiriqui.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane6.setViewportView(tablavista_estadisticachiriqui);
+
+        tablavista_estadisticaPanama.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane7.setViewportView(tablavista_estadisticaPanama);
+
+        jLabel22.setText("Sucursal Chitre");
+
+        jLabel23.setText("Sucursal Chiriquí");
+
+        jLabel24.setText("Sucursal Panamá");
+
+        lblchitre.setText("      ");
+
+        lblpanama.setText("      ");
+
+        lblchiriqui.setText("      ");
+
+        javax.swing.GroupLayout estadisticaLayout = new javax.swing.GroupLayout(estadistica);
+        estadistica.setLayout(estadisticaLayout);
+        estadisticaLayout.setHorizontalGroup(
+            estadisticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(estadisticaLayout.createSequentialGroup()
+                .addGroup(estadisticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(estadisticaLayout.createSequentialGroup()
+                        .addGap(302, 302, 302)
+                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(estadisticaLayout.createSequentialGroup()
+                        .addGap(127, 127, 127)
+                        .addComponent(datechosserFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addGroup(estadisticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(estadisticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(estadisticaLayout.createSequentialGroup()
+                                .addGroup(estadisticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(estadisticaLayout.createSequentialGroup()
+                                        .addGap(61, 61, 61)
+                                        .addGroup(estadisticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(27, 27, 27))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, estadisticaLayout.createSequentialGroup()
+                                        .addComponent(lblchiriqui, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(106, 106, 106)))
+                                .addGroup(estadisticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(estadisticaLayout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(lblpanama, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(estadisticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(CBtipoEstadistica, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(estadisticaLayout.createSequentialGroup()
+                                    .addComponent(datechosserFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(45, 45, 45)
+                                    .addComponent(jButton1)))))
+                    .addGroup(estadisticaLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addGroup(estadisticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblchitre, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(106, Short.MAX_VALUE))
+            .addGroup(estadisticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(estadisticaLayout.createSequentialGroup()
+                    .addGap(37, 37, 37)
+                    .addComponent(jLabel20)
+                    .addContainerGap(1027, Short.MAX_VALUE)))
+        );
+        estadisticaLayout.setVerticalGroup(
+            estadisticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(estadisticaLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel18)
+                .addGap(12, 12, 12)
+                .addGroup(estadisticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(datechosserFechaFin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, estadisticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(datechosserFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel19)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(estadisticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel21)
+                    .addComponent(CBtipoEstadistica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
+                .addGroup(estadisticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel22)
+                    .addComponent(jLabel23)
+                    .addComponent(jLabel24))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(estadisticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(estadisticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblchitre)
+                    .addComponent(lblpanama)
+                    .addComponent(lblchiriqui))
+                .addContainerGap(644, Short.MAX_VALUE))
+            .addGroup(estadisticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(estadisticaLayout.createSequentialGroup()
+                    .addGap(51, 51, 51)
+                    .addComponent(jLabel20)
+                    .addContainerGap(955, Short.MAX_VALUE)))
+        );
+
+        client_historial.addTab("Estadisticas", estadistica);
 
         inicio.setText("Inicio");
 
@@ -816,8 +999,39 @@ try {
     }//GEN-LAST:event_btnEliminarUserActionPerformed
 
     private void tablecotizacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablecotizacionesMouseClicked
-        // TODO add your handling code here:
+       
+     int fila = tablecotizaciones.getSelectedRow();
+    if (fila >= 0) {
+        int idCotizacion = Integer.parseInt(tablecotizaciones.getValueAt(fila, 0).toString());
+
+        // Abrir ventana DetalleCotizacion pasando el ID seleccionado
+        DetalleCotizacion detalle = new DetalleCotizacion(this, true, idCotizacion);
+        detalle.setVisible(true);
+    }    
+        
+        
+        
+        
+        
+        
+        
     }//GEN-LAST:event_tablecotizacionesMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      String seleccion = CBtipoEstadistica.getSelectedItem().toString();
+
+    if (seleccion.equals("Cotizaciones realizadas")) {
+   // generarEstadisticaCotizaciones();
+    } else if (seleccion.equals("Facturaciones")) {
+   generarEstadisticaFacturas();
+    } else if (seleccion.equals("Materiales vendidos")) {
+    generarEstadisticaMateriales();
+    } else if (seleccion.equals("Materiales cotizados")) {
+  generarEstadisticaCotizaciones();
+    } else if(seleccion.equals("Seleccione")){
+       JOptionPane.showMessageDialog(null, "Por favor, seleccione la estadistica que desea visualizar");
+}
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1503,7 +1717,7 @@ public void cargarCotizaciones() {
 
     tablecotizaciones.setModel(modelo);
 
-    String sql = "SELECT id_cotizacion, cedula_cliente, fecha, estado, subtotal, itbms, total FROM cotizaciones";
+    String sql = "SELECT id_cotizacion, cedula_cliente, fecha, subtotal, itbms, total FROM cotizaciones";
 
     try {
    
@@ -1516,10 +1730,10 @@ public void cargarCotizaciones() {
             fila[0] = rs.getInt("id_cotizacion");
             fila[1] = rs.getString("cedula_cliente");
             fila[2] = rs.getTimestamp("fecha");
-            fila[3] = rs.getString("estado");
-            fila[4] = rs.getDouble("subtotal");
-            fila[5] = rs.getDouble("itbms");
-            fila[6] = rs.getDouble("total");
+       
+            fila[3] = rs.getDouble("subtotal");
+            fila[4] = rs.getDouble("itbms");
+            fila[5] = rs.getDouble("total");
             modelo.addRow(fila);
         }
 
@@ -1530,9 +1744,313 @@ public void cargarCotizaciones() {
     }
 }
 
+
+public void generarEstadisticaMateriales() {
+    java.sql.Date sqlFechaInicio = new java.sql.Date(datechosserFechaInicio.getDate().getTime());
+    java.sql.Date sqlFechaFin = new java.sql.Date(datechosserFechaFin.getDate().getTime());
+
+    // Crear modelos de tabla
+    DefaultTableModel modeloChitre = new DefaultTableModel(new String[]{"ID Material", "Material", "Cantidad Vendida"}, 0);
+    DefaultTableModel modeloVeraguas = new DefaultTableModel(new String[]{"ID Material", "Material", "Cantidad Vendida"}, 0);
+    DefaultTableModel modeloPanama = new DefaultTableModel(new String[]{"ID Material", "Material", "Cantidad Vendida"}, 0);
+
+    String sql =
+        "SELECT m.id_material, m.nombre AS material, SUM(df.cantidad) AS total_vendido " +
+        "FROM detalle_factura df " +
+        "JOIN facturas f ON df.id_factura = f.id_factura " +
+        "JOIN materiales m ON df.id_material = m.id_material " +
+        "WHERE f.fecha BETWEEN ? AND ? " +
+        "GROUP BY m.id_material, m.nombre " +
+        "ORDER BY total_vendido DESC";
+
+    // Conexiones
+    try (
+        Connection conChitre = new Conexion().getConnection();
+        Connection conChiriqui = BD2.conector();
+        Connection conPanama = BD3.conector();
+
+        PreparedStatement psChitre = conChitre.prepareStatement(sql);
+        PreparedStatement psChiriqui = conChiriqui.prepareStatement(sql);
+        PreparedStatement psPanama = conPanama.prepareStatement(sql)
+    ) {
+        // Establecer parámetros para todas las consultas
+        psChitre.setDate(1, sqlFechaInicio);
+        psChitre.setDate(2, sqlFechaFin);
+
+        psChiriqui.setDate(1, sqlFechaInicio);
+        psChiriqui.setDate(2, sqlFechaFin);
+
+        psPanama.setDate(1, sqlFechaInicio);
+        psPanama.setDate(2, sqlFechaFin);
+
+        // Ejecutar y procesar resultados para Chitré
+        try (ResultSet rsChitre = psChitre.executeQuery()) {
+            while (rsChitre.next()) {
+                modeloChitre.addRow(new Object[]{
+                    rsChitre.getInt("id_material"),
+                    rsChitre.getString("material"),
+                    rsChitre.getInt("total_vendido")
+                });
+            }
+        }
+
+        // Ejecutar y procesar resultados para Veraguas
+        try (ResultSet rsVeraguas = psChiriqui.executeQuery()) {
+            while (rsVeraguas.next()) {
+                modeloVeraguas.addRow(new Object[]{
+                    rsVeraguas.getInt("id_material"),
+                    rsVeraguas.getString("material"),
+                    rsVeraguas.getInt("total_vendido")
+                });
+            }
+        }
+
+        // Ejecutar y procesar resultados para Panamá
+        try (ResultSet rsPanama = psPanama.executeQuery()) {
+            while (rsPanama.next()) {
+                modeloPanama.addRow(new Object[]{
+                    rsPanama.getInt("id_material"),
+                    rsPanama.getString("material"),
+                    rsPanama.getInt("total_vendido")
+                });
+            }
+        }
+
+        // Asignar modelos a las tablas
+        tablavista_estadistica.setModel(modeloChitre);
+        tablavista_estadisticachiriqui.setModel(modeloVeraguas);
+        tablavista_estadisticaPanama.setModel(modeloPanama);
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al generar estadística: " + e.getMessage());
+        e.printStackTrace();
+    }
+}
+
+public void generarEstadisticaCotizaciones() {
+    java.sql.Date sqlFechaInicio = new java.sql.Date(datechosserFechaInicio.getDate().getTime());
+    java.sql.Date sqlFechaFin = new java.sql.Date(datechosserFechaFin.getDate().getTime());
+
+    DefaultTableModel modeloChitre = new DefaultTableModel(new String[]{"ID Material", "Material", "Cantidad Cotizada"}, 0);
+    DefaultTableModel modeloVeraguas = new DefaultTableModel(new String[]{"ID Material", "Material", "Cantidad Cotizada"}, 0);
+    DefaultTableModel modeloPanama = new DefaultTableModel(new String[]{"ID Material", "Material", "Cantidad Cotizada"}, 0);
+
+    String sqlDetalle = 
+        "SELECT m.id_material, m.nombre AS material, SUM(dc.cantidad) AS total_cotizado " +
+        "FROM detalle_cotizacion dc " +
+        "JOIN cotizaciones c ON dc.id_cotizacion = c.id_cotizacion " +
+        "JOIN materiales m ON dc.id_material = m.id_material " +
+        "WHERE c.fecha BETWEEN ? AND ? " +
+        "GROUP BY m.id_material, m.nombre " +
+        "ORDER BY total_cotizado DESC";
+
+    String sqlConteo =
+        "SELECT COUNT(DISTINCT id_cotizacion) AS total_cotizaciones " +
+        "FROM cotizaciones " +
+        "WHERE fecha BETWEEN ? AND ?";
+
+    try (
+        Connection conChitre = new Conexion().getConnection();
+        Connection conChiriqui = BD2.conector();
+        Connection conPanama = BD3.conector();
+
+        PreparedStatement psChitre = conChitre.prepareStatement(sqlDetalle);
+        PreparedStatement psChiriqui = conChiriqui.prepareStatement(sqlDetalle);
+        PreparedStatement psPanama = conPanama.prepareStatement(sqlDetalle);
+
+        PreparedStatement psConteoChitre = conChitre.prepareStatement(sqlConteo);
+        PreparedStatement psConteoChiriqui = conChiriqui.prepareStatement(sqlConteo);
+        PreparedStatement psConteoPanama = conPanama.prepareStatement(sqlConteo);
+    ) {
+        // Establecer fechas para todos los statements
+        for (PreparedStatement ps : new PreparedStatement[]{psChitre, psChiriqui, psPanama, psConteoChitre, psConteoChiriqui, psConteoPanama}) {
+            ps.setDate(1, sqlFechaInicio);
+            ps.setDate(2, sqlFechaFin);
+        }
+
+        // Procesar resultados de detalle para Chitré
+        try (ResultSet rs = psChitre.executeQuery()) {
+            while (rs.next()) {
+                modeloChitre.addRow(new Object[]{
+                    rs.getInt("id_material"),
+                    rs.getString("material"),
+                    rs.getInt("total_cotizado")
+                });
+            }
+        }
+
+        // Procesar resultados de detalle para Chiriquí
+        try (ResultSet rs = psChiriqui.executeQuery()) {
+            while (rs.next()) {
+                modeloVeraguas.addRow(new Object[]{
+                    rs.getInt("id_material"),
+                    rs.getString("material"),
+                    rs.getInt("total_cotizado")
+                });
+            }
+        }
+
+        // Procesar resultados de detalle para Panamá
+        try (ResultSet rs = psPanama.executeQuery()) {
+            while (rs.next()) {
+                modeloPanama.addRow(new Object[]{
+                    rs.getInt("id_material"),
+                    rs.getString("material"),
+                    rs.getInt("total_cotizado")
+                });
+            }
+        }
+
+        // Contar cotizaciones Chitré
+        try (ResultSet rs = psConteoChitre.executeQuery()) {
+            if (rs.next()) {
+                int total = rs.getInt("total_cotizaciones");
+                lblchitre.setText("Cotizaciones: " + total);
+            }
+        }
+
+        // Contar cotizaciones Chiriquí
+        try (ResultSet rs = psConteoChiriqui.executeQuery()) {
+            if (rs.next()) {
+                int total = rs.getInt("total_cotizaciones");
+                lblchiriqui.setText("Cotizaciones: " + total);
+            }
+        }
+
+        // Contar cotizaciones Panamá
+        try (ResultSet rs = psConteoPanama.executeQuery()) {
+            if (rs.next()) {
+                int total = rs.getInt("total_cotizaciones");
+                lblpanama.setText("Cotizaciones: " + total);
+            }
+        }
+
+        // Mostrar resultados en tablas
+        tablavista_estadistica.setModel(modeloChitre);
+        tablavista_estadisticachiriqui.setModel(modeloVeraguas);
+        tablavista_estadisticaPanama.setModel(modeloPanama);
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al generar estadística de cotizaciones: " + e.getMessage());
+        e.printStackTrace();
+    }
+}
+
+public void generarEstadisticaFacturas() {
+    java.sql.Date sqlFechaInicio = new java.sql.Date(datechosserFechaInicio.getDate().getTime());
+    java.sql.Date sqlFechaFin = new java.sql.Date(datechosserFechaFin.getDate().getTime());
+
+    DefaultTableModel modeloChitre = new DefaultTableModel(new String[]{"ID Material", "Material", "Cantidad Facturada"}, 0);
+    DefaultTableModel modeloVeraguas = new DefaultTableModel(new String[]{"ID Material", "Material", "Cantidad Facturada"}, 0);
+    DefaultTableModel modeloPanama = new DefaultTableModel(new String[]{"ID Material", "Material", "Cantidad Facturada"}, 0);
+
+    String sqlMateriales =
+        "SELECT m.id_material, m.nombre AS material, SUM(df.cantidad) AS total_facturado " +
+        "FROM detalle_factura df " +
+        "JOIN facturas f ON df.id_factura = f.id_factura " +
+        "JOIN materiales m ON df.id_material = m.id_material " +
+        "WHERE f.fecha BETWEEN ? AND ? " +
+        "GROUP BY m.id_material, m.nombre " +
+        "ORDER BY total_facturado DESC";
+
+    String sqlConteoFacturas =
+        "SELECT COUNT(*) AS total_facturas " +
+        "FROM facturas " +
+        "WHERE fecha BETWEEN ? AND ?";
+
+    try (
+        Connection conChitre = new Conexion().getConnection();
+        Connection conChiriqui = BD2.conector();
+        Connection conPanama = BD3.conector();
+
+        PreparedStatement psMatChitre = conChitre.prepareStatement(sqlMateriales);
+        PreparedStatement psMatChiriqui = conChiriqui.prepareStatement(sqlMateriales);
+        PreparedStatement psMatPanama = conPanama.prepareStatement(sqlMateriales);
+
+        PreparedStatement psContChitre = conChitre.prepareStatement(sqlConteoFacturas);
+        PreparedStatement psContChiriqui = conChiriqui.prepareStatement(sqlConteoFacturas);
+        PreparedStatement psContPanama = conPanama.prepareStatement(sqlConteoFacturas)
+    ) {
+        // Set fechas en los statements
+        psMatChitre.setDate(1, sqlFechaInicio);
+        psMatChitre.setDate(2, sqlFechaFin);
+        psMatChiriqui.setDate(1, sqlFechaInicio);
+        psMatChiriqui.setDate(2, sqlFechaFin);
+        psMatPanama.setDate(1, sqlFechaInicio);
+        psMatPanama.setDate(2, sqlFechaFin);
+
+        psContChitre.setDate(1, sqlFechaInicio);
+        psContChitre.setDate(2, sqlFechaFin);
+        psContChiriqui.setDate(1, sqlFechaInicio);
+        psContChiriqui.setDate(2, sqlFechaFin);
+        psContPanama.setDate(1, sqlFechaInicio);
+        psContPanama.setDate(2, sqlFechaFin);
+
+        // Ejecutar y llenar modelos
+        try (ResultSet rs = psMatChitre.executeQuery()) {
+            while (rs.next()) {
+                modeloChitre.addRow(new Object[]{
+                    rs.getInt("id_material"),
+                    rs.getString("material"),
+                    rs.getInt("total_facturado")
+                });
+            }
+        }
+
+        try (ResultSet rs = psMatChiriqui.executeQuery()) {
+            while (rs.next()) {
+                modeloVeraguas.addRow(new Object[]{
+                    rs.getInt("id_material"),
+                    rs.getString("material"),
+                    rs.getInt("total_facturado")
+                });
+            }
+        }
+
+        try (ResultSet rs = psMatPanama.executeQuery()) {
+            while (rs.next()) {
+                modeloPanama.addRow(new Object[]{
+                    rs.getInt("id_material"),
+                    rs.getString("material"),
+                    rs.getInt("total_facturado")
+                });
+            }
+        }
+
+        // Mostrar resultados en las tablas
+        tablavista_estadistica.setModel(modeloChitre);
+        tablavista_estadisticachiriqui.setModel(modeloVeraguas);
+        tablavista_estadisticaPanama.setModel(modeloPanama);
+
+        // Mostrar totales de facturas en los labels
+        try (ResultSet rs = psContChitre.executeQuery()) {
+            if (rs.next()) {
+                lblchitre.setText("Total Facturas: " + rs.getInt("total_facturas"));
+            }
+        }
+
+        try (ResultSet rs = psContChiriqui.executeQuery()) {
+            if (rs.next()) {
+                lblchiriqui.setText("Total Facturas: " + rs.getInt("total_facturas"));
+            }
+        }
+
+        try (ResultSet rs = psContPanama.executeQuery()) {
+            if (rs.next()) {
+                lblpanama.setText("Total Facturas: " + rs.getInt("total_facturas"));
+            }
+        }
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al generar estadística de facturas: " + e.getMessage());
+        e.printStackTrace();
+    }
+}
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CBcategoria;
     private javax.swing.JComboBox<String> CBnombreproducto;
+    private javax.swing.JComboBox<String> CBtipoEstadistica;
     private javax.swing.JPanel JPLimagen;
     private javax.swing.JTextArea TAdetalleproducto;
     private javax.swing.JTextField TFcantdisponible;
@@ -1547,7 +2065,11 @@ public void cargarCotizaciones() {
     private javax.swing.JButton btnModificarUser;
     private javax.swing.JMenuItem cerrarSesion;
     private javax.swing.JTabbedPane client_historial;
+    private com.toedter.calendar.JDateChooser datechosserFechaFin;
+    private com.toedter.calendar.JDateChooser datechosserFechaInicio;
+    private javax.swing.JPanel estadistica;
     private javax.swing.JMenu inicio;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -1560,7 +2082,14 @@ public void cargarCotizaciones() {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1574,10 +2103,19 @@ public void cargarCotizaciones() {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JComboBox<String> jcrolUser;
+    private javax.swing.JLabel lblchiriqui;
+    private javax.swing.JLabel lblchitre;
+    private javax.swing.JLabel lblpanama;
+    private javax.swing.JTable tablavista_estadistica;
+    private javax.swing.JTable tablavista_estadisticaPanama;
+    private javax.swing.JTable tablavista_estadisticachiriqui;
     private javax.swing.JTable tableUsuarios;
     private javax.swing.JTable tablecotizaciones;
     private javax.swing.JTextField tfcedulaUser;
